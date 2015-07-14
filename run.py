@@ -50,10 +50,10 @@ def main():
             # Refresh the screen
             stdscr.refresh()
             # Wait for a character and perform an action based on input character.
-            c = std.getch()
+            c = stdscr.getch()
     except Exception as ex:
         # Should do some sort of logging here.
-        print ex
+        pass
     finally:
         # Return the terminal to a sane mode.
         stdscr.keypad( 0)
