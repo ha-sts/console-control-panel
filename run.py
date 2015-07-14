@@ -26,12 +26,30 @@ def main():
         curses.noecho()
         curses.cbreak()
         stdscr.keypad( 1)
-        while True:
-            stringDisplay = "The current count: %02d" % ( count, )
-            stdscr.addstr( 0, 0, stringDisplay)
-            count = ( count + 1 ) % 100
+        while running:
+            # Wait for a character and perform an action based on input character.
+            c = std.getch()
+            if c == ord( 'u'):
+                # Increment the count and display
+                count = ( count + 1 ) % 100
+                stringDisplay = "The current count: %02d" % ( count, )
+                stdscr.addstr( 10, 0, stringDisplay)
+            elif c == ord( 'd'):
+                # Decrement the count and display
+                count = ( count - 1 ) % 100
+                stringDisplay = "The current count: %02d" % ( count, )
+                stdscr.addstr( 10, 0, stringDisplay)
+            elif c == ord( 'q'):
+                running = False
+            # Display the menu
+            stdscr.addstr( 0, 0, "<systemName> Control Panel") # Display title
+            stdscr.addstr( 1, 0, "  <hostName> - 0.10 0.01 0.00 - connected") # Realtime information
+            stdscr.addstr( 3, 0, "Please choose an option:")
+            stdscr.addstr( 4, 4, "u - Increment Counter")
+            stdscr.addstr( 5, 4, "d - Decrement Counter")
+            stdscr.addstr( 6, 4, "q - Quit")
+            # Refresh the screen
             stdscr.refresh()
-            time.sleep( 0.1)
     except Exception as ex:
         # Should do some sort of logging here.
         pass
