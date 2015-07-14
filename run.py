@@ -53,7 +53,7 @@ def main():
             c = std.getch()
     except Exception as ex:
         # Should do some sort of logging here.
-        pass
+        print ex
     finally:
         # Return the terminal to a sane mode.
         stdscr.keypad( 0)
