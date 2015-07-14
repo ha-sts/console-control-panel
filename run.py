@@ -17,6 +17,7 @@ def main():
     # Initiallize running variables
     running = True
     count = 0
+    c = ''
     
     # Create the initial window.
     stdscr = curses.initscr()
@@ -27,8 +28,6 @@ def main():
         curses.cbreak()
         stdscr.keypad( 1)
         while running:
-            # Wait for a character and perform an action based on input character.
-            c = std.getch()
             if c == ord( 'u'):
                 # Increment the count and display
                 count = ( count + 1 ) % 100
@@ -50,6 +49,8 @@ def main():
             stdscr.addstr( 6, 4, "q - Quit")
             # Refresh the screen
             stdscr.refresh()
+            # Wait for a character and perform an action based on input character.
+            c = std.getch()
     except Exception as ex:
         # Should do some sort of logging here.
         pass
