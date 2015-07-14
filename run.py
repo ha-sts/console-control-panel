@@ -5,6 +5,8 @@ import curses
 import time
 
 ### GLOBALS ###
+screenHeight = 24
+screenWidth = 80
 
 ### FUNCTIONS ###
 
@@ -12,6 +14,10 @@ import time
 
 ### MAIN ###
 def main():
+    # Initiallize running variables
+    running = True
+    count = 0
+    
     # Create the initial window.
     stdscr = curses.initscr()
     
@@ -22,6 +28,9 @@ def main():
         stdscr.keypad( 1)
         while True:
             time.sleep( 0.1)
+            stringDisplay = "The current count: %d" % ( count, )
+            stdscr.addstr( 0, 0, stringDisplay)
+            count = ( count + 1 ) % 100
     except Exception as ex:
         # Should do some sort of logging here.
         pass
