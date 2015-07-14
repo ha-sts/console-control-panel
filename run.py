@@ -9,6 +9,13 @@ screenHeight = 24
 screenWidth = 80
 
 ### FUNCTIONS ###
+def displayMenu( scr):
+    scr.addstr( 0, 0, "<systemName> Control Panel") # Display title
+    scr.addstr( 1, 0, "  <hostName> - 0.10 0.01 0.00 - connected") # Realtime information
+    scr.addstr( 3, 0, "Please choose an option:")
+    scr.addstr( 4, 4, "u - Increment Counter")
+    scr.addstr( 5, 4, "d - Decrement Counter")
+    scr.addstr( 6, 4, "q - Quit")
 
 ### CLASSES ###
 
@@ -27,7 +34,13 @@ def main():
         curses.noecho()
         curses.cbreak()
         stdscr.keypad( 1)
+        
+        # Display the menu and start the input collection loop.
+        displayMenu( stdscr)
+        stdscr.refresh()
         while running:
+            # Wait for a character and perform an action based on input character.
+            c = stdscr.getch()
             if c == ord( 'u'):
                 # Increment the count and display
                 count = ( count + 1 ) % 100
@@ -41,16 +54,9 @@ def main():
             elif c == ord( 'q'):
                 running = False
             # Display the menu
-            stdscr.addstr( 0, 0, "<systemName> Control Panel") # Display title
-            stdscr.addstr( 1, 0, "  <hostName> - 0.10 0.01 0.00 - connected") # Realtime information
-            stdscr.addstr( 3, 0, "Please choose an option:")
-            stdscr.addstr( 4, 4, "u - Increment Counter")
-            stdscr.addstr( 5, 4, "d - Decrement Counter")
-            stdscr.addstr( 6, 4, "q - Quit")
+            displayMenu( stdscr)
             # Refresh the screen
             stdscr.refresh()
-            # Wait for a character and perform an action based on input character.
-            c = stdscr.getch()
     except Exception as ex:
         # Should do some sort of logging here.
         pass
