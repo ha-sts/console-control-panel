@@ -2,6 +2,7 @@
 
 ### IMPORTS ###
 import curses
+import time
 
 ### GLOBALS ###
 
@@ -11,7 +12,25 @@ import curses
 
 ### MAIN ###
 def main():
-    pass
+    # Create the initial window.
+    stdscr = curses.initscr()
+    
+    # Setup the display.  Make sure to catch all exceptions and revert to a normal terminal.
+    try:
+        curses.noecho()
+        curses.cbreak()
+        stdscr.keypad( 1)
+        while True:
+            time.sleep( 0.1)
+    except Exception as ex:
+        # Should do some sort of logging here.
+        pass
+    finally:
+        # Return the terminal to a sane mode.
+        stdscr.keypad( 0)
+        curses.nocbreak()
+        curses.echo()
+        curses.endwin()
 
 if __name__ == '__main__':
     main()
