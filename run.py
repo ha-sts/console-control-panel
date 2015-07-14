@@ -27,7 +27,7 @@ def main():
         curses.cbreak()
         stdscr.keypad( 1)
         while True:
-            stringDisplay = "The current count: %d" % ( count, )
+            stringDisplay = "The current count: %02d" % ( count, )
             stdscr.addstr( 0, 0, stringDisplay)
             count = ( count + 1 ) % 100
             stdscr.refresh()
