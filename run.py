@@ -27,10 +27,11 @@ def main():
         curses.cbreak()
         stdscr.keypad( 1)
         while True:
-            time.sleep( 0.1)
             stringDisplay = "The current count: %d" % ( count, )
             stdscr.addstr( 0, 0, stringDisplay)
             count = ( count + 1 ) % 100
+            stdscr.refresh()
+            time.sleep( 0.1)
     except Exception as ex:
         # Should do some sort of logging here.
         pass
